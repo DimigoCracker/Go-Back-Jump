@@ -250,14 +250,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         timer = maxTime;
 
-        uiTexts[1].enabled = false;
         if (win)
         {
-            uiTexts[2].enabled = true;
+            PopupText(2);
         }
         else
         {
-            uiTexts[3].enabled = true;
+            PopupText(3);
         }
     }
 
