@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour
     public float maxTime = 5;
     public Text timerText;
 
-    public float answertime;
+    private float answertime;
     public float answerRootMax = 2;
+    public float late;
 
     public InputField textInput;
 
@@ -91,6 +92,8 @@ public class GameManager : MonoBehaviour
 
     void Restart()
     {
+        textInput.text = "";
+
         PopupText(1);
 
         turn = 1;
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
         player = 1;
 
         timer = maxTime;
+
         SetAnswertime();
 
         Time.timeScale = 1;
@@ -244,6 +248,8 @@ public class GameManager : MonoBehaviour
     void GameOver(bool win)
     {
         Time.timeScale = 0;
+        timer = maxTime;
+
         uiTexts[1].enabled = false;
         if (win)
         {
@@ -257,7 +263,7 @@ public class GameManager : MonoBehaviour
 
     void SetAnswertime()
     {
-        answertime = Random.Range(0.5f, answerRootMax);
+        answertime = Random.Range(-late, answerRootMax);
         answertime *= answertime;
     }
 }
